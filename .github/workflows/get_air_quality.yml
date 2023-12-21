@@ -1,0 +1,27 @@
+name: Get Air Quality
+
+on:
+  schedule:
+    - cron: '*/2 * * * *'  
+
+jobs:
+  get-air-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Bash
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq curl
+
+    - name: Run get air quality script
+      run: |
+        bash scripts/get_air_quality.sh
