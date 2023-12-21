@@ -24,4 +24,5 @@ jobs:
 
     - name: Run get air quality script
       run: |
-        bash scripts/get_air_quality.sh
+        bash scripts/get_air_quality.sh > output.log 2>&1
+        cat output.log  # Print the log content for debugging purposes
